@@ -18,11 +18,14 @@ import { AppNotfoundComponent } from './pages/app.notfound.component';
 import { AppErrorComponent } from './pages/app.error.component';
 import { AppAccessdeniedComponent } from './pages/app.accessdenied.component';
 import { AppLoginComponent } from './pages/app.login.component';
+import { ConfirmRaceAttandanceComponent } from './sms/confirmraceattandance/confirmraceattandance.component';
+import { OfficialsComponent } from './officials/officials.component';
 
 export const routes: Routes = [
     { path: '', component: AppMainComponent,
         children: [
             { path: '', component: DashboardDemoComponent },
+            { path: 'officials', component: OfficialsComponent },
             { path: 'components/sample', component: SampleDemoComponent },
             { path: 'components/forms', component: FormsDemoComponent },
             { path: 'components/data', component: DataDemoComponent },
@@ -34,7 +37,8 @@ export const routes: Routes = [
             { path: 'pages/empty', component: EmptyDemoComponent },
             { path: 'components/charts', component: ChartsDemoComponent },
             { path: 'components/file', component: FileDemoComponent },
-            { path: 'documentation', component: DocumentationComponent }
+            { path: 'documentation', component: DocumentationComponent },
+            { path: 'confirmraceattandance', component: ConfirmRaceAttandanceComponent },
         ]
     },
     {path: 'error', component: AppErrorComponent},

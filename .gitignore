@@ -1,1 +1,14 @@
-ui/node_modules/
+*.vs
+*.csproj.user
+*.sqlproj.user
+**/bin
+**/obj
+**/Logs/*
+
+**/node_modules
+**/.vscode
+**/dist
+*.dbmdl
+*.jfm
+.config
+PublishProfiles

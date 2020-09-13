@@ -103,6 +103,9 @@ import { CountryService } from './demo/service/countryservice';
 import { EventService } from './demo/service/eventservice';
 import { NodeService } from './demo/service/nodeservice';
 import { MenuService } from './app.menu.service';
+import { ConfirmRaceAttandanceComponent } from './sms/confirmraceattandance/confirmraceattandance.component';
+import { SendSMSComponent } from './sms/sendsms/sendsms.component';
+import { OfficialsComponent } from './officials/officials.component';
 
 @NgModule({
     imports: [
@@ -177,7 +180,7 @@ import { MenuService } from './app.menu.service';
         TreeTableModule,
         VirtualScrollerModule
     ],
-    declarations: [
+    declarations: [	
         AppComponent,
         AppMainComponent,
         AppMenuComponent,
@@ -203,8 +206,11 @@ import { MenuService } from './app.menu.service';
         AppNotfoundComponent,
         AppErrorComponent,
         AppAccessdeniedComponent,
-        AppLoginComponent
-    ],
+        AppLoginComponent,
+        ConfirmRaceAttandanceComponent,
+        SendSMSComponent,
+        OfficialsComponent
+   ],
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },
         CarService, CountryService, EventService, NodeService, MenuService

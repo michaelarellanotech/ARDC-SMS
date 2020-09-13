@@ -1,0 +1,202 @@
+<div class="p-grid ui-fluid">
+  <div class="p-col-12">
+      <div class="card card-w-title">
+          <h1 style="display:inline-block;">Officials Events</h1>                        
+          <div style="float: right;">
+            <!-- <button pButton type="button" label="Send SMS" class="ui-button-raised" [disabled]="!selectedValues.length" style="width: auto; margin-left: 10px;" (click)="sendSMSVisible = true" icon="pi pi-comment"></button>
+            <button pButton type="button" label="Reload" class="ui-button-raised" style="width: auto; margin-left: 10px;" (click)="loadData()" icon="pi pi-refresh"></button>             -->
+          </div>
+          <p-table #table 
+              [value]="listData" 
+              [lazy]="true" 
+              (onLazyLoad)="loadListDataLazy($event)" 
+              paginator="true" 
+              [rows]="pageSize" 
+              [totalRecords]="totalRecords" 
+              responsive="true" 
+              [first]="pageOffset" 
+              sortField="firstname" 
+              dataKey="Id"
+              [(selection)]="selectedRecord">
+              <!-- <ng-template pTemplate="caption">
+                      <div class="p-grid form-group" style="margin-bottom: -0.5em">
+                              <div class="p-col-12 p-md-6 p-sm-12">
+                                  <form>
+                                      <div class="ui-inputgroup" style="width:300px;">                        
+                                          <input pInputText type="text" id="search" name="search" [(ngModel)]="globalTextSearch" (input)="table.filterGlobal($event.target.value, 'contains')" style="border-right:0">
+                                          <button pButton type="button" label="Clear" class="ui-button-secondary"(click)="resetSearch()" icon="pi pi-times"></button>
+                                      </div>
+                                  </form>
+                              </div>
+                              <div class="p-col-12 p-md-6 p-sm-12" style="text-align: right;">
+                                  <button pButton type="button" [label]="config.defaultAddNewLabel" class="ui-button-raised" style="width: auto;" (click)="addNew()" icon="pi pi-plus"></button>
+                              </div>
+                          </div>
+              </ng-template> -->
+              <ng-template pTemplate="header">
+                  <tr>
+                      <th style="width: 4em">       
+                        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>     
+                      </th>
+                      <th pSortableColumn="firstname">
+                          First Name
+                          <p-sortIcon field="firstname"></p-sortIcon>
+                      </th>
+                      <th pSortableColumn="surname">
+                        Surname
+                        <p-sortIcon field="surname"></p-sortIcon>
+                      </th>
+                      <th pSortableColumn="personRoleType">
+                        Role
+                        <p-sortIcon field="personRoleType"></p-sortIcon>
+                      </th>                      
+                      <th pSortableColumn="eventType">
+                        Event Type
+                        <p-sortIcon field="eventType"></p-sortIcon>
+                      </th>
+                      <th pSortableColumn="eventDay">
+                        Event Date
+                        <p-sortIcon field="eventDay"></p-sortIcon>
+                      </th>
+                      <!-- <th pSortableColumn="CAMS">
+                          CAMS
+                          <p-sortIcon field="CAMS"></p-sortIcon>
+                      </th>
+                      <th pSortableColumn="DOB">
+                          DOB
+                          <p-sortIcon field="DOB"></p-sortIcon>
+                      </th>
+                      <th pSortableColumn="Mobile">
+                          Mobile
+                          <p-sortIcon field="Mobile"></p-sortIcon>
+                      </th>
+                      <th pSortableColumn="RaceEvent">
+                          Race Event
+                          <p-sortIcon field="RaceEvent"></p-sortIcon>
+                      </th>
+                      <th pSortableColumn="EventDateTime">
+                          Event Date/Time
+                          <p-sortIcon field="EventDateTime"></p-sortIcon>
+                      </th>
+                      <th pSortableColumn="Status">
+                        Status
+                        <p-sortIcon field="Status"></p-sortIcon>
+                    </th>                                    
+                    <th pSortableColumn="SMSSent">
+                      SMS Sent
+                      <p-sortIcon field="SMSSent"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="Confirmed">
+                      SMS Response
+                      <p-sortIcon field="Confirmed"></p-sortIcon>
+                    </th>   -->
+                  </tr>
+                  <!-- <tr>
+                    <th style="width: 4em">      
+                          
+                    </th>
+                    <th>
+                        <input pInputText type="text" (input)="table.filter($event.target.value, 'Name', 'contains')">
+                    </th>
+                    <th>
+                        <input pInputText type="text" (input)="table.filter($event.target.value, 'Ssurname', 'contains')" >
+                    </th>
+                    <th>
+                        <input pInputText type="text" (input)="table.filter($event.target.value, 'DOB', 'contains')" >
+                    </th>
+                    <th>
+                        <input pInputText type="text" (input)="table.filter($event.target.value, 'Mobile', 'contains')" >
+                    </th>
+                    <th>
+                        <input pInputText type="text" (input)="table.filter($event.target.value, 'RaceEvent', 'contains')" >
+                    </th>
+                    <th>
+                        <input pInputText type="text" (input)="table.filter($event.target.value, 'EventDateTime', 'contains')" >
+                    </th>
+                    <th>
+                        <input pInputText type="text" (input)="table.filter($event.target.value, 'Status', 'contains')" >
+                    </th>
+                    <th>
+                        <input pInputText type="text" (input)="table.filter($event.target.value, 'SMSSent', 'contains')" >
+                    </th>
+                    <th>
+                        <input pInputText type="text" (input)="table.filter($event.target.value, 'Confirmed', 'contains')" >
+                    </th>
+                  </tr> -->
+              </ng-template>
+              <ng-template pTemplate="body" let-rowData>
+                  <tr [pSelectableRow]="rowData">
+                    <td style="width: 4em">                      
+                      <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
+                    </td>
+                    <td class="grid-column-no-wrap">
+                        <span class="ui-column-title">First Name</span>
+                        {{ rowData["firstname"] }} 
+                    </td>
+                    <td class="grid-column-no-wrap">
+                      <span class="ui-column-title">Surname</span>
+                      {{ rowData["surname"] }} 
+                    </td>
+                    <td class="grid-column-no-wrap">
+                      <span class="ui-column-title">Role</span>
+                      {{ rowData["personRoleType"] }} 
+                    </td>
+                    <td class="grid-column-no-wrap">
+                      <span class="ui-column-title">Event Type</span>
+                      {{ rowData["eventType"] }} 
+                    </td>
+                    <td class="grid-column-no-wrap">
+                      <span class="ui-column-title">Event Date</span>
+                      {{ rowData["eventDay"] | date:'dd/MM/yyyy'}} 
+                    </td>   
+                    
+                    <!-- <td class="grid-column-no-wrap" [pTooltip]="rowData['CAMS']" tooltipPosition="top">
+                            <span class="ui-column-title">CAMS</span>
+                        {{ rowData["CAMS"] }} 
+                    </td>
+                    <td class="grid-column-no-wrap">
+                        <span class="ui-column-title">DOB</span>
+                        {{ rowData["DOB"] }} 
+                    </td>  
+                    <td>
+                        <span class="ui-column-title">Mobile</span>
+                        {{ rowData["Mobile"] }} 
+                    </td>                                            
+                    <td>
+                        <span class="ui-column-title">Race Event</span>
+                        {{ rowData["RaceEvent"] }} 
+                    </td>
+                    <td class="grid-column-no-wrap">
+                        <span class="ui-column-title">Event Date/Time</span>
+                        {{ rowData["EventDateTime"] }} 
+                    </td>                        
+                    <td class="grid-column-no-wrap">
+                      <span class="ui-column-title">Status</span>
+                      {{ rowData["Status"] }} 
+                    </td> 
+                    <td class="grid-column-no-wrap">
+                      <span class="ui-column-title">SMS Sent</span>
+                      {{ rowData["SMSSent"] }} 
+                    </td>
+                    <td class="grid-column-no-wrap">
+                      <span class="ui-column-title">Confirmed</span>
+                      {{ rowData["Confirmed"] }} 
+                    </td> -->
+                  </tr>
+              </ng-template>
+              <ng-template pTemplate="paginatorleft" let-state>
+                  <div class="pagerInfo">
+                      Total Records: {{ state.totalRecords }}
+                  </div>                    
+              </ng-template>
+              <ng-template pTemplate="paginatorright" let-state>
+                  <div class="pagerInfo">
+                      Total Pages: {{ totalPages }}
+                  </div>                    
+              </ng-template>
+          </p-table>                    
+      </div>
+  </div>
+</div>
+
+<!-- <app-sendsms [visible]="sendSMSVisible" (closeAction)="sendSMSVisible=false" [recipients]="selectedValues"></app-sendsms> -->
